@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: development.db-service-redis
+  namespace: development.db
+  labels:
+    env: development
+spec:
+  type: NodePort
+  ports:
+    - port: 6379
+      targetPort: 6379
+      nodePort: 33000
+  selector:
+    local: development.db
+    app: redis
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: development.db-pod-redis
+  namespace: development.db
+  labels:
+    env: development
+    local: development.db
+    app: redis
+spec:
+  containers:
+    - name: redis
+      image: redis:6.2.5-alpine
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 6379
