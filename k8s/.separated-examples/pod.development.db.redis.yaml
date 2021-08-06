@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: development.db-pod-redis
-  namespace: development.db
+  name: development-db-pod-redis
+  namespace: development-db
   labels:
     env: development
-    local: development.db
+    local: development-db
     app: redis
 spec:
   containers:

@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: development.db-service-redis
-  namespace: development.db
+  name: development-db-service-redis
+  namespace: development-db
   labels:
     env: development
 spec:
@@ -10,7 +10,7 @@ spec:
   ports:
     - port: 6379
       targetPort: 6379
-      nodePort: 33000
+      nodePort: 30031
   selector:
-    local: development.db
+    local: development-db
     app: redis
