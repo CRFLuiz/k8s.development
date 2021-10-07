@@ -25,4 +25,3 @@ extraExposePorts:
 persistence:
   storageClassName: gp2
   enabled: true
-  adminPassword: testpass
