@@ -1,0 +1,28 @@
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      url: http://prometheus-server.prometheus.svc.cluster.local
+      access: proxy
+      isDefault: true
+service:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-2:082766573384:certificate/3b952465-545a-4a12-bb8f-4bcfa1f6e759
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: https-port
+  type: LoadBalancer
+  portName: http
+  nodePort: 30777
+  port: 80
+  targetPort: 3000
+extraExposePorts:
+- name: https-port
+  port: 443
+  targetPort: 3000
+  nodePort: 30778
+persistence:
+  storageClassName: gp2
+  enabled: true
+  adminPassword: testpass
