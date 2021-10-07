@@ -28,7 +28,7 @@ persistence:
 dashboards:
   rhom:
     json: |
-	  {
+  {
     "annotations": {
       "list": [
         {
